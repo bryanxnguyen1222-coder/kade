@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kade AI | AI Call Agents for Carpet Cleaners</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4f9ff;
+      --bg-2: #ffffff;
+      --panel: #ffffff;
+      --panel-soft: #eef6ff;
+      --text: #0f1f33;
+      --muted: #55708d;
+      --line: rgba(44, 110, 203, 0.16);
+      --blue: #2563eb;
+      --blue-2: #1d4ed8;
+      --blue-3: #60a5fa;
+      --accent: #0ea5e9;
+      --white: #ffffff;
+      --shadow: 0 18px 50px rgba(37, 99, 235, 0.12);
+      --radius: 24px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(96,165,250,0.18), transparent 24%),
+        radial-gradient(circle at 100% 12%, rgba(14,165,233,0.12), transparent 22%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section { padding: 88px 0; }
+
+    .hero-title,
+    .section-title,
+    .card-title,
+    .big-stat,
+    .quote,
+    .cta-title,
+    .faq-title {
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      line-height: 0.95;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #0f1f33 0%, #2563eb 40%, #0ea5e9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .muted { color: var(--muted); }
+
+    .btn {
+      border: 0;
+      border-radius: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.22s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue), var(--accent));
+      color: white;
+      padding: 15px 22px;
+      box-shadow: 0 14px 34px rgba(37, 99, 235, 0.22);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 38px rgba(37, 99, 235, 0.28);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--text);
+      border: 1px solid rgba(15, 31, 51, 0.08);
+      padding: 15px 22px;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.82);
+      border-bottom: 1px solid rgba(37, 99, 235, 0.08);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      position: relative;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--blue), var(--accent));
+      color: white;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.22);
+      font-size: 1rem;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      color: var(--text);
+      border: 0;
+      font-size: 1.45rem;
+      cursor: pointer;
+    }
+
+    .hero { padding: 56px 0 40px; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.06fr 0.94fr;
+      gap: 46px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 7vw, 6rem);
+      max-width: 780px;
+      margin-bottom: 20px;
+    }
+
+    .hero-copy {
+      color: var(--muted);
+      font-size: 1.06rem;
+      max-width: 660px;
+      margin-bottom: 28px;
+    }
+
+    .toggle-wrap {
+      display: inline-flex;
+      background: #eaf3ff;
+      border: 1px solid rgba(37, 99, 235, 0.1);
+      padding: 6px;
+      border-radius: 999px;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .toggle-pill {
+      padding: 10px 18px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .toggle-pill.active {
+      background: linear-gradient(135deg, rgba(37,99,235,0.16), rgba(14,165,233,0.14));
+      color: var(--blue-2);
+    }
+
+    .lead-form {
+      display: flex;
+      gap: 10px;
+      max-width: 580px;
+      margin-bottom: 14px;
+    }
+
+    .lead-form input {
+      flex: 1;
+      min-width: 0;
+      background: white;
+      border: 1px solid rgba(37, 99, 235, 0.14);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 16px;
+      outline: none;
+    }
+
+    .hero-note {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 20px;
+      max-width: 700px;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--blue);
+      font-weight: 700;
+      flex-wrap: wrap;
+    }
+
+    .hero-card,
+    .feature-card,
+    .stat-panel,
+    .testimonial-card,
+    .comparison-card,
+    .faq-item,
+    .logo-card,
+    .value-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 18px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -22% -36% auto;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(96,165,250,0.34), transparent 62%);
+      pointer-events: none;
+    }
+
+    .mock-ui {
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(37, 99, 235, 0.1);
+      background: linear-gradient(180deg, #f8fbff 0%, #edf5ff 100%);
+    }
+
+    .mock-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(37, 99, 235, 0.08);
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .mock-video {
+      aspect-ratio: 4 / 5;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(96,165,250,0.24), transparent 16%),
+        radial-gradient(circle at 80% 25%, rgba(14,165,233,0.16), transparent 18%),
+        linear-gradient(135deg, #eef6ff 0%, #dbeafe 100%);
+      padding: 22px;
+      display: grid;
+      place-items: center;
+    }
+
+    .agent-window {
+      width: 100%;
+      height: 100%;
+      border-radius: 22px;
+      border: 1px solid rgba(37, 99, 235, 0.1);
+      background: linear-gradient(180deg, rgba(255,255,255,0.86), rgba(255,255,255,0.72));
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+    }
+
+    .agent-avatar {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #93c5fd, #2563eb);
+      box-shadow: 0 0 0 6px rgba(255,255,255,0.75);
+    }
+
+    .chat-bubble {
+      max-width: 82%;
+      padding: 12px 14px;
+      border-radius: 16px 16px 16px 4px;
+      background: #ffffff;
+      border: 1px solid rgba(37, 99, 235, 0.1);
+      margin-top: 10px;
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+
+    .chat-bubble.outgoing {
+      margin-left: auto;
+      border-radius: 16px 16px 4px 16px;
+      background: linear-gradient(135deg, rgba(37,99,235,0.95), rgba(14,165,233,0.88));
+      color: white;
+      border-color: transparent;
+    }
+
+    .proof-bar {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 20px 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .proof-item,
+    .check-item,
+    .compare-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .proof-item {
+      color: var(--text);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .icon-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      display: inline-grid;
+      place-items: center;
+      flex-shrink: 0;
+      font-size: 0.8rem;
+      background: linear-gradient(135deg, var(--blue), var(--accent));
+      color: white;
+      box-shadow: 0 8px 16px rgba(37, 99, 235, 0.18);
+    }
+
+    .split-section {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 44px;
+      align-items: start;
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 5vw, 4.2rem);
+      max-width: 660px;
+      margin-bottom: 20px;
+    }
+
+    .section-copy {
+      color: var(--muted);
+      max-width: 580px;
+      margin-bottom: 24px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 24px;
+    }
+
+    .feature-card {
+      min-height: 240px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      gap: 18px;
+    }
+
+    .feature-card::after {
+      content: "";
+      position: absolute;
+      top: -70px;
+      right: -60px;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, rgba(96,165,250,0.2), transparent 64%);
+      pointer-events: none;
+    }
+
+    .feature-icon {
+      width: 102px;
+      height: 102px;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--blue-2);
+      border: 1px solid rgba(37, 99, 235, 0.1);
+      background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(14,165,233,0.08));
+    }
+
+    .card-title { font-size: 2rem; }
+    .check-list { display: grid; gap: 12px; }
+    .check-item { color: var(--text); }
+
+    .three-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .value-card {
+      padding: 28px;
+      min-height: 210px;
+      background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
+    }
+
+    .value-card h3 {
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+      font-size: 1.9rem;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .problem-panel,
+    .calendar-panel {
+      min-height: 360px;
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .problem-panel::before,
+    .calendar-panel::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(96,165,250,0.16), transparent 65%);
+      top: -70px;
+      right: -60px;
+    }
+
+    .problem-stats {
+      display: grid;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .big-stat {
+      font-size: 3.4rem;
+      color: var(--blue-2);
+    }
+
+    .stat-line {
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(37, 99, 235, 0.1);
+      background: var(--panel-soft);
+      color: var(--muted);
+    }
+
+    .calendar-ui {
+      margin-top: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(37, 99, 235, 0.1);
+      background: linear-gradient(180deg, #ffffff 0%, #eef6ff 100%);
+      padding: 18px;
+    }
+
+    .calendar-top {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-size: 0.92rem;
+    }
+
+    .calendar-slots {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .slot {
+      border-radius: 14px;
+      padding: 14px;
+      background: white;
+      border: 1px solid rgba(37, 99, 235, 0.1);
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .slot.active {
+      background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(14,165,233,0.08));
+      border-color: rgba(37,99,235,0.2);
+      color: var(--blue-2);
+    }
+
+    .stat-panel {
+      padding: 34px;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 30px;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .stat-panel::before {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(96,165,250,0.2), transparent 64%);
+    }
+
+    .graphic {
+      width: 100%;
+      min-height: 230px;
+      border-radius: 22px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(37, 99, 235, 0.1);
+      background:
+        radial-gradient(circle at 62% 18%, rgba(14,165,233,0.18), transparent 26%),
+        linear-gradient(135deg, #f8fbff, #e8f2ff);
+    }
+
+    .graphic-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: white;
+      color: var(--blue-2);
+      font-size: 0.86rem;
+      font-weight: 800;
+      border: 1px solid rgba(37, 99, 235, 0.1);
+    }
+
+    .wave {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 16px;
+      height: 72%;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(96,165,250,0.14), rgba(37,99,235,0.4));
+      clip-path: polygon(0% 76%, 14% 69%, 28% 73%, 43% 48%, 57% 56%, 71% 26%, 86% 36%, 100% 8%, 100% 100%, 0 100%);
+    }
+
+    .logos {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 18px;
+      padding-top: 36px;
+    }
+
+    .logo-card {
+      min-height: 72px;
+      display: grid;
+      place-items: center;
+      color: var(--blue-2);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+    }
+
+    .case-study {
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .case-photo {
+      min-height: 270px;
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 28% 22%, rgba(255,255,255,0.45), transparent 18%),
+        linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+      border: 1px solid rgba(37, 99, 235, 0.1);
+    }
+
+    .case-photo::after {
+      content: "";
+      position: absolute;
+      inset: 20px;
+      border-radius: 18px;
+      border: 1px solid rgba(37, 99, 235, 0.08);
+      background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(219,234,254,0.7));
+    }
+
+    .case-study h3 {
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 0.96;
+      margin-bottom: 18px;
+    }
+
+    .metric-row {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .metric-box { min-width: 120px; }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      margin-top: 30px;
+    }
+
+    .testimonial-card {
+      padding: 26px;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+    }
+
+    .stars {
+      color: var(--blue);
+      letter-spacing: 0.22em;
+      font-size: 1rem;
+      margin-bottom: 14px;
+    }
+
+    .quote {
+      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+      max-width: 18ch;
+    }
+
+    .person {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .person-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-3), var(--blue));
+      flex-shrink: 0;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .comparison-card {
+      padding: 28px;
+      min-height: 220px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    }
+
+    .comparison-card h3 {
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+      font-size: 2rem;
+      margin-bottom: 18px;
+    }
+
+    .comparison-card.highlight {
+      border-color: rgba(14, 165, 233, 0.22);
+      box-shadow: 0 18px 42px rgba(14, 165, 233, 0.12);
+    }
+
+    .compare-list {
+      display: grid;
+      gap: 14px;
+      color: var(--muted);
+    }
+
+    .faq-wrap {
+      display: grid;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .faq-item {
+      overflow: hidden;
+      background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: transparent;
+      border: 0;
+      padding: 22px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .faq-question span:last-child {
+      color: var(--blue);
+      font-size: 1.2rem;
+      transition: transform 0.25s ease;
+    }
+
+    .faq-item.active .faq-question span:last-child { transform: rotate(180deg); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      color: var(--muted);
+      padding: 0 24px;
+    }
+
+    .faq-answer p { padding: 0 0 22px; max-width: 72ch; }
+
+    .cta { padding: 92px 0 106px; }
+
+    .cta-box {
+      border-top: 1px solid rgba(37, 99, 235, 0.1);
+      padding-top: 34px;
+    }
+
+    .cta-title {
+      font-size: clamp(2.5rem, 5vw, 4.7rem);
+      max-width: 960px;
+      margin-bottom: 24px;
+    }
+
+    .footer {
+      border-top: 1px solid rgba(37, 99, 235, 0.08);
+      padding: 30px 0 60px;
+      background: rgba(255,255,255,0.45);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr;
+      gap: 30px;
+    }
+
+    .footer h4 { margin-bottom: 14px; font-size: 1rem; }
+
+    .footer-links {
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .footer-links a:hover { color: var(--text); }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .split-section,
+      .two-col-grid,
+      .stat-panel,
+      .case-study,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .proof-bar,
+      .three-grid,
+      .testimonial-grid,
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .logos { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 760px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 79px;
+        left: 16px;
+        right: 16px;
+        background: rgba(255,255,255,0.98);
+        border: 1px solid rgba(37, 99, 235, 0.1);
+        border-radius: 20px;
+        padding: 18px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links.open { display: flex; }
+      .menu-toggle { display: block; }
+      .lead-form { flex-direction: column; }
+      .logos { grid-template-columns: repeat(2, 1fr); }
+      .calendar-slots { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#" class="brand">
+        <span class="brand-mark">K</span>
+        <span>Kade AI</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#why">Why It Works</a>
+        <a href="#problem">Missed Calls</a>
+        <a href="#results">Results</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">AI call agents for carpet cleaners</p>
+          <h1 class="hero-title">Turn missed carpet cleaning calls into <span class="gradient-text">booked jobs</span>.</h1>
+          <p class="hero-copy">
+            Kade AI answers every inbound call, collects job details, asks what day works best, and helps carpet cleaning companies book more work without adding staff.
+          </p>
+
+          <div class="toggle-wrap" aria-label="channel toggles">
+            <div class="toggle-pill active">Calls</div>
+            <div class="toggle-pill">Bookings</div>
+            <div class="toggle-pill">Lead Capture</div>
+          </div>
+
+          <form class="lead-form">
+            <input type="email" placeholder="Email address*" aria-label="Email address" />
+            <button class="btn btn-primary" type="button">Get More Bookings</button>
+          </form>
+
+          <p class="hero-note">
+            Carpet cleaning companies lose jobs when calls go unanswered during cleanings, driving time, evenings, weekends, and busy rush periods. Kade AI keeps answering when your team cannot.
+          </p>
+
+          <div class="rating">
+            <span>★★★★★</span>
+            <span class="muted">Answer more calls</span>
+            <span class="muted">Book more cleanings</span>
+            <span class="muted">Save time</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="mock-ui">
+            <div class="mock-header">
+              <span>Live carpet cleaning AI agent</span>
+              <span>Available 24/7</span>
+            </div>
+            <div class="mock-video">
+              <div class="agent-window">
+                <div class="agent-avatar"></div>
+                <div class="chat-bubble">Thanks for calling. How many rooms would you like cleaned?</div>
+                <div class="chat-bubble outgoing">Three rooms and a hallway.</div>
+                <div class="chat-bubble">Perfect. What day works best for your cleaning?</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proof-bar">
+        <div class="proof-item"><span class="icon-dot">✓</span><span>Answer Every Call</span></div>
+        <div class="proof-item"><span class="icon-dot">✓</span><span>Book More Cleanings</span></div>
+        <div class="proof-item"><span class="icon-dot">✓</span><span>Capture Lost Revenue</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="container split-section">
+        <div>
+          <p class="eyebrow">Why it works for carpet cleaners</p>
+          <h2 class="section-title">Your AI call agent handles the calls that come in while your crew is <span class="gradient-text">out cleaning</span>.</h2>
+          <p class="section-copy">
+            Carpet cleaning businesses often miss calls because the team is inside homes, driving between appointments, or already talking to another customer. Kade AI answers instantly, qualifies the job, and keeps the booking process moving.
+          </p>
+          <a href="#contact" class="btn btn-primary">See It In Action</a>
+        </div>
+
+        <div class="stack">
+          <article class="feature-card">
+            <div class="feature-icon">1</div>
+            <div>
+              <h3 class="card-title">Answers Every Call</h3>
+              <p class="section-copy" style="margin-bottom:0;">No voicemail, no waiting, no lost first impression. Every carpet cleaning lead gets an immediate response.</p>
+            </div>
+            <div class="check-list">
+              <div class="check-item"><span class="icon-dot">✓</span><span>Great for crews already inside appointments</span></div>
+              <div class="check-item"><span class="icon-dot">✓</span><span>Answers after-hours and weekend calls</span></div>
+            </div>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">2</div>
+            <div>
+              <h3 class="card-title">Collects the Right Job Details</h3>
+              <p class="section-copy" style="margin-bottom:0;">The AI can ask about number of rooms, stairs, hallways, pet stains, address, and timing before passing the lead along or helping book it.</p>
+            </div>
+            <div class="check-list">
+              <div class="check-item"><span class="icon-dot">✓</span><span>Collect room count and service needs</span></div>
+              <div class="check-item"><span class="icon-dot">✓</span><span>Capture address and contact info cleanly</span></div>
+            </div>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">3</div>
+            <div>
+              <h3 class="card-title">Helps Book Jobs Automatically</h3>
+              <p class="section-copy" style="margin-bottom:0;">Ask what day the customer wants, offer open times, and move more calls into scheduled carpet cleaning appointments.</p>
+            </div>
+            <div class="check-list">
+              <div class="check-item"><span class="icon-dot">✓</span><span>Great for simple scheduling flows</span></div>
+              <div class="check-item"><span class="icon-dot">✓</span><span>Works with booking-first or lead-first setups</span></div>
+            </div>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">4</div>
+            <div>
+              <h3 class="card-title">Handles Call Overlap</h3>
+              <p class="section-copy" style="margin-bottom:0;">When two people call at once, Kade AI handles both instead of sending one to a missed call, voicemail, or another cleaning company.</p>
+            </div>
+            <div class="check-list">
+              <div class="check-item"><span class="icon-dot">✓</span><span>No busy signals during peak hours</span></div>
+              <div class="check-item"><span class="icon-dot">✓</span><span>More consistent booking coverage</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="problem">
+      <div class="container two-col-grid">
+        <article class="feature-card problem-panel">
+          <p class="eyebrow">The missed call problem</p>
+          <h2 class="section-title" style="font-size:clamp(2rem,4.2vw,3.5rem); max-width:500px;">Missed calls can quietly cost carpet cleaners <span class="gradient-text">thousands</span>.</h2>
+          <p class="section-copy">A homeowner looking for carpet cleaning often calls more than one company. If you do not answer, they usually move on to the next business instead of leaving a message.</p>
+          <div class="problem-stats">
+            <div class="stat-line"><strong class="big-stat">20%–40%</strong><br>of business calls go unanswered on average</div>
+            <div class="stat-line">Evenings and weekends are often the worst</div>
+            <div class="stat-line">Crews miss calls while cleaning or driving</div>
+            <div class="stat-line">Voicemail usually means the job is lost</div>
+          </div>
+        </article>
+
+        <article class="feature-card calendar-panel">
+          <p class="eyebrow">Booking flow</p>
+          <h2 class="section-title" style="font-size:clamp(2rem,4.2vw,3.5rem); max-width:520px;">Let the AI ask what day they want and offer <span class="gradient-text">open cleaning times</span>.</h2>
+          <p class="section-copy">For carpet cleaning companies, Kade AI can collect service details, ask for the preferred day, and offer the best available time windows so the lead moves faster toward a booking.</p>
+
+          <div class="calendar-ui">
+            <div class="calendar-top">
+              <span>Available cleaning windows</span>
+              <span>Live booking logic</span>
+            </div>
+            <div class="calendar-slots">
+              <div class="slot active">Friday • 9:00 AM</div>
+              <div class="slot">Friday • 1:30 PM</div>
+              <div class="slot">Saturday • 10:00 AM</div>
+              <div class="slot active">Saturday • 2:30 PM</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="eyebrow">Built around your carpet cleaning offer</p>
+        <h2 class="section-title">Use different sections to sell the parts of the service that matter most to <span class="gradient-text">carpet cleaning businesses</span>.</h2>
+        <div class="three-grid">
+          <article class="value-card">
+            <h3>Missed Call Recovery</h3>
+            <p class="muted">Show how many cleaning jobs are lost when homeowners call and no one picks up.</p>
+          </article>
+          <article class="value-card">
+            <h3>Fast Booking</h3>
+            <p class="muted">Focus on how the AI asks the right questions and helps move calls toward scheduled cleanings.</p>
+          </article>
+          <article class="value-card">
+            <h3>Less Than Hiring</h3>
+            <p class="muted">Position the service as full call coverage without adding another person just to answer phones.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="container stat-panel">
+        <div>
+          <p class="eyebrow">The result</p>
+          <h2 class="section-title">More answered calls. More carpet cleaning bookings. <span class="gradient-text">More revenue.</span></h2>
+          <div class="check-list">
+            <div class="check-item"><span class="icon-dot">✓</span><span>Respond fast while your crew stays focused on the current job</span></div>
+            <div class="check-item"><span class="icon-dot">✓</span><span>Capture more homeowners before they call the next cleaner</span></div>
+            <div class="check-item"><span class="icon-dot">✓</span><span>Keep your calendar fuller without hiring front desk staff</span></div>
+          </div>
+        </div>
+
+        <div class="graphic">
+          <div class="graphic-badge">Booked cleanings rising</div>
+          <div class="wave"></div>
+        </div>
+      </div>
+
+      <div class="container logos">
+        <div class="logo-card">FreshFloor</div>
+        <div class="logo-card">CleanNest</div>
+        <div class="logo-card">BlueRug</div>
+        <div class="logo-card">PureSteam</div>
+        <div class="logo-card">Spotless</div>
+        <div class="logo-card">DeepClean</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container feature-card case-study">
+        <div class="case-photo"></div>
+        <div>
+          <p class="eyebrow">Example outcome</p>
+          <h3>Faster response helped turn more carpet cleaning calls into booked appointments</h3>
+          <p class="section-copy">When inbound calls get answered right away, more homeowners stay engaged, more details get captured, and more cleaning jobs move into the schedule.</p>
+          <div class="metric-row">
+            <div class="metric-box">
+              <div class="big-stat">4x</div>
+              <div class="muted">more booked calls</div>
+            </div>
+            <div class="metric-box">
+              <div class="big-stat">24/7</div>
+              <div class="muted">call coverage</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="eyebrow" style="text-align:center;">Built for service businesses, tuned for carpet cleaning</p>
+        <h2 class="section-title" style="text-align:center; margin-inline:auto;">What carpet cleaning companies can expect from a <span class="gradient-text">Kade AI</span> call agent</h2>
+        <div class="testimonial-grid">
+          <article class="testimonial-card">
+            <div>
+              <div class="stars">★★★★★</div>
+              <p class="quote">“We stopped losing cleaning jobs when our crew was already inside appointments.”</p>
+            </div>
+            <div class="person">
+              <div class="person-avatar"></div>
+              <div><strong>Rick S.</strong><br><span>Cleaning company owner</span></div>
+            </div>
+          </article>
+          <article class="testimonial-card">
+            <div>
+              <div class="stars">★★★★★</div>
+              <p class="quote">“It captures room count and timing before we even call back.”</p>
+            </div>
+            <div class="person">
+              <div class="person-avatar"></div>
+              <div><strong>Nick M.</strong><br><span>Operations manager</span></div>
+            </div>
+          </article>
+          <article class="testimonial-card">
+            <div>
+              <div class="stars">★★★★★</div>
+              <p class="quote">“Weekend calls used to disappear. Now they turn into Monday bookings.”</p>
+            </div>
+            <div class="person">
+              <div class="person-avatar"></div>
+              <div><strong>Jerry S.</strong><br><span>Local carpet cleaner</span></div>
+            </div>
+          </article>
+          <article class="testimonial-card">
+            <div>
+              <div class="stars">★★★★★</div>
+              <p class="quote">“It helps us book more cleanings without paying for extra office staff.”</p>
+            </div>
+            <div class="person">
+              <div class="person-avatar"></div>
+              <div><strong>Paul P.</strong><br><span>Growth lead</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="eyebrow">Kade AI vs missed carpet cleaning calls</p>
+        <h2 class="section-title">A better system than voicemail, callbacks, and losing jobs to the next carpet cleaner</h2>
+        <div class="comparison-grid">
+          <article class="comparison-card">
+            <h3>Without Kade AI</h3>
+            <div class="compare-list">
+              <div class="compare-item"><span class="icon-dot">•</span><span>Homeowners call while your crew is busy and no one answers</span></div>
+              <div class="compare-item"><span class="icon-dot">•</span><span>Two calls at once means one cleaning lead gets missed</span></div>
+              <div class="compare-item"><span class="icon-dot">•</span><span>Voicemail rarely turns into a booked appointment</span></div>
+            </div>
+          </article>
+          <article class="comparison-card highlight">
+            <h3>With Kade AI</h3>
+            <div class="compare-list">
+              <div class="compare-item"><span class="icon-dot">✓</span><span>Every carpet cleaning call gets answered immediately</span></div>
+              <div class="compare-item"><span class="icon-dot">✓</span><span>The AI gathers details and helps move the lead toward booking</span></div>
+              <div class="compare-item"><span class="icon-dot">✓</span><span>More jobs get captured without adding another employee</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <p class="eyebrow">FAQs</p>
+        <h2 class="section-title faq-title">Questions carpet cleaners ask about the AI call agent</h2>
+        <div class="faq-wrap">
+          <div class="faq-item active">
+            <button class="faq-question" type="button">
+              <span>What does Kade AI do for a carpet cleaning company?</span>
+              <span>⌄</span>
+            </button>
+            <div class="faq-answer" style="max-height: 220px;">
+              <p>Kade AI answers incoming calls, asks about the job, collects details like room count and address, and helps move the caller toward a booked carpet cleaning appointment.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Can it ask what day the customer wants?</span>
+              <span>⌄</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes. It can ask what day works best, offer available time windows, and help place the lead into the right opening based on your scheduling setup.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Can it handle multiple callers at once?</span>
+              <span>⌄</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes. Kade AI helps with call overlap so two or more homeowners can be handled at the same time instead of getting a missed call or busy line.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Why not just let calls go to voicemail?</span>
+              <span>⌄</span>
+            </button>
+            <div class="faq-answer">
+              <p>Because most people do not leave a message. When someone wants carpet cleaning, they often call the next company if nobody answers right away.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Is this cheaper than hiring someone to answer calls?</span>
+              <span>⌄</span>
+            </button>
+            <div class="faq-answer">
+              <p>For many carpet cleaning companies, yes. It gives broader call coverage and more consistency without the payroll cost of adding dedicated front desk staff.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="container cta-box">
+        <p class="eyebrow">Turn more carpet cleaning calls into revenue</p>
+        <h2 class="cta-title">Never miss another carpet cleaning job with a <span class="gradient-text">Kade AI</span> call agent.</h2>
+        <a href="#" class="btn btn-primary">Book a Demo</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="#" class="brand" style="display:inline-flex; margin-bottom:16px;">
+          <span class="brand-mark">K</span>
+          <span>Kade AI</span>
+        </a>
+        <p class="muted">AI call agents built to help carpet cleaning businesses answer more calls, book more jobs, and stop losing revenue from missed opportunities.</p>
+      </div>
+
+      <div>
+        <h4>Get in touch</h4>
+        <div class="footer-links">
+          <a href="#">Support</a>
+          <a href="#">Sales</a>
+          <a href="#">Demo</a>
+        </div>
+      </div>
+
+      <div>
+        <h4>More</h4>
+        <div class="footer-links">
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">Cookie Policy</a>
+          <a href="#">Careers</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.parentElement;
+        const answer = item.querySelector('.faq-answer');
+        const isActive = item.classList.contains('active');
+
+        document.querySelectorAll('.faq-item').forEach(faq => {
+          faq.classList.remove('active');
+          faq.querySelector('.faq-answer').style.maxHeight = null;
+        });
+
+        if (!isActive) {
+          item.classList.add('active');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
