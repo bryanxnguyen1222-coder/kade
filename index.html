@@ -1693,4 +1693,30 @@
   </script>
 </body>
 </html>
+document.getElementById("callForm")?.addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const formData = new FormData(e.target);
+
+  const data = {
+    name: formData.get("name"),
+    phone: formData.get("phone")
+  };
+
+  const res = await fetch("/api/start-call", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  if (res.ok) {
+    alert("📞 Calling you now...");
+  } else {
+    alert("Something went wrong.");
+  }
+});
+
+</script>
 
